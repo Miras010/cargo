@@ -1,36 +1,22 @@
 const Track = require('../models/Track')
+const Receipt = require('../models/Receipt')
 const TrackService = require('./../services/trackService')
+const ReceiptService = require('./../services/receiptService')
 const jwt = require("jsonwebtoken");
 const {secret} = require("../config");
 
-class TrackController {
+class ReceiptController {
     async create (req, res) {
         try {
-            const {trackNumber, receivedInChinaDate, fromChinaToAlmaty, receivedInAlmatyDate, receivedByClient, weight} = req.body
+            const {receiver, weight, totalSum, totalNumber} = req.body
             const token = req.headers.authorization.split(' ')[1]
             if (!token) {
                 return res.status(400).json({message: 'Не авторизован'})
             }
             const {id} = jwt.verify(token, secret)
-            const track = await TrackService.create({trackNumber, receivedInChinaDate, fromChinaToAlmaty, receivedInAlmatyDate, receivedByClient, weight, createdBy: id})
+            const track = await ReceiptService.create({receiver, weight, totalSum, totalNumber, createdBy: id})
             res.status(200).json(track)
         } catch (e) {
-            res.status(500).json(e)
-        }
-    }
-
-    async upsertManyTracks (req, res) {
-        try {
-            const arrData = req.body
-            const token = req.headers.authorization.split(' ')[1]
-            if (!token) {
-                return res.status(400).json({message: 'Не авторизован'})
-            }
-            const {id} = jwt.verify(token, secret)
-            const track = await TrackService.upsertMany(arrData, id)
-            res.status(200).json(track)
-        } catch (e) {
-            console.log(e)
             res.status(500).json(e)
         }
     }
@@ -38,7 +24,21 @@ class TrackController {
     async getAll (req, res) {
         try {
             const { page = 1, limit = 10, globalFilter = '', filterBy, from, to} = req.query
-            const posts = await TrackService.getAll({page, limit, globalFilter, filterBy, from, to})
+            const posts = await ReceiptService.getAll({page, limit, globalFilter, filterBy, from, to})
+            res.status(200).json(posts)
+        } catch (e) {
+            res.status(500).json(e)
+        }
+    }
+
+    async getUserReceipts (req, res) {
+        try {
+            const token = req.headers.authorization.split(' ')[1]
+            if (!token) {
+                return res.status(400).json({message: 'Не авторизован'})
+            }
+            const {id} = jwt.verify(token, secret)
+            const posts = await ReceiptService.getUserReceipts(id)
             res.status(200).json(posts)
         } catch (e) {
             res.status(500).json(e)
@@ -52,8 +52,8 @@ class TrackController {
                 return res.status(400).json({message: 'Не авторизован'})
             }
             const {id} = jwt.verify(token, secret)
-            const { page = 1, limit = 10, globalFilter = '', filterBy, from, to} = req.query
-            const posts = await TrackService.getAllByPartner({page, limit, globalFilter, filterBy, from, to, createdBy: id})
+            const { page = 1, limit = 10 } = req.query
+            const posts = await ReceiptService.getAllByPartner({page, limit, createdBy: id})
             res.status(200).json(posts)
         } catch (e) {
             res.status(500).json(e)
@@ -62,25 +62,25 @@ class TrackController {
 
     async getOne (req, res) {
         try {
-            const track = await Track.findById(req.params.id)
+            const track = await Receipt.findById(req.params.id)
             res.status(200).json(track)
         } catch (e) {
             res.status(500).json(e)
         }
     }
 
-    async deleteTrack (req, res) {
+    async deleteReceipt (req, res) {
         try {
-            const track = await Track.findByIdAndDelete(req.params.id)
+            const track = await Receipt.findByIdAndDelete(req.params.id)
             res.status(200).json(track)
         } catch (e) {
             res.status(500).json(e)
         }
     }
 
-    async updateTrack (req, res) {
+    async updateReceipt (req, res) {
         try {
-            const updatedTrack = await TrackService.updateTrack(req.body)
+            const updatedTrack = await ReceiptService.update(req.body)
             res.status(200).json(updatedTrack)
         } catch (e) {
             console.log(e)
@@ -90,4 +90,4 @@ class TrackController {
 
 }
 
-module.exports = new TrackController()
+module.exports = new ReceiptController()

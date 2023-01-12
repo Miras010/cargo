@@ -7,9 +7,13 @@ const roleMiddleware = require('./../middleware/roleMiddleware')
 
 authRouter.post('/login', AuthController.login)
 authRouter.post('/registration', [
-    check('username', 'Имя не должны быть пустым').notEmpty(),
+    check('name', 'Имя не должен быть пустым').notEmpty(),
+    check('surname', 'Фамилия не должен быть пустым').notEmpty(),
+    check('mail', 'Почта не должен быть пустым').notEmpty(),
+    check('phoneNumber', 'Номер не должен быть пустым').notEmpty(),
     check('password', 'Пароль должен быть больше 3 и меньше 10').isLength({min: 3, max: 10}),
 ], AuthController.registration)
-authRouter.get('/users', roleMiddleware(['USER']), AuthController.getUsers)
+authRouter.get('/users', AuthController.getUsers)
+// authRouter.get('/users', roleMiddleware(['USER']), AuthController.getUsers)
 
 module.exports = authRouter
