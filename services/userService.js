@@ -28,6 +28,19 @@ class UserService {
         }
     }
 
+    async loadUsers (params) {
+        const { globalFilter } = params
+        let regex = ''
+        if (globalFilter !== 'null') {
+            regex = new RegExp(globalFilter, 'i')
+        }
+        const users = await User.find({
+            username: {$regex: regex},
+        })
+            .exec()
+        return users
+    }
+
     async update (user) {
         if (!user._id) {
             throw new Error('Enter the id')

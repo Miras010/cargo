@@ -51,6 +51,16 @@ class UserController {
         }
     }
 
+    async loadUsers (req, res) {
+        try {
+            const { globalFilter = '' } = req.query
+            const response = await UserService.loadUsers({ globalFilter })
+            res.status(200).json(response)
+        } catch (e) {
+            res.status(500).json(e)
+        }
+    }
+
     async getOne (req, res) {
         try {
             const track = await User.findById(req.params.id)

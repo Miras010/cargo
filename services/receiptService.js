@@ -12,6 +12,7 @@ class ReceiptService {
         const res = await Receipt.find()
             .limit(limit * 1)
             .skip((page - 1) * limit)
+            .populate('receiver')
             .exec()
         const count = await Receipt.count()
         return {
