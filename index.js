@@ -30,7 +30,7 @@ app.use('/*', function (req, res) {
     res.sendFile(path.join(__dirname + '/frontend/index.html'))
 })
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 80
 
 moongose.set('strictQuery', true);
 
