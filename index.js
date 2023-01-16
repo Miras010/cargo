@@ -15,7 +15,7 @@ const corsOptions ={
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200,
 }
-app.use(express.static(path.join(__dirname, 'frontend')))
+// app.use(express.static(path.join(__dirname, 'frontend')))
 
 app.use(cors(corsOptions))
 app.use('/api/auth', authRouter)
@@ -26,11 +26,11 @@ app.use('/api/receipt', receiptRouter)
 //     res.end('Welcome to the logistic company!')
 // })
 
-app.use('/*', function (req, res) {
-    res.sendFile(path.join(__dirname + '/frontend/index.html'))
-})
+// app.use('/*', function (req, res) {
+//     res.sendFile(path.join(__dirname + '/frontend/index.html'))
+// })
 
-const PORT = process.env.PORT || 80
+const PORT = process.env.PORT || 3000
 
 moongose.set('strictQuery', true);
 
