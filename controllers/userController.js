@@ -89,6 +89,63 @@ class UserController {
         }
     }
 
+    async updateByUser (req, res) {
+        try {
+            const token = req.headers.authorization.split(' ')[1]
+            if (!token) {
+                return res.status(400).json({message: 'Не авторизован'})
+            }
+            const { id: userId } = jwt.verify(token, secret)
+            let { username, name, surname, phoneNumber, mail } = req.body
+            const updated = await UserService.update({ _id: userId, username, name, surname, phoneNumber, mail })
+            res.status(200).json(updated)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
+        }
+    }
+
+    async changePasswordByUser (req, res) {
+        try {
+            const token = req.headers.authorization.split(' ')[1]
+            if (!token) {
+                return res.status(400).json({message: 'Не авторизован'})
+            }
+            const { id: userId } = jwt.verify(token, secret)
+            let { currentPassword, newPassword } = req.body
+            const user = await User.findById(userId)
+            if (!user) {
+                return res.status(400).json({message: 'Ошибка обновления'})
+            }
+            const validPassword = bcrypt.compareSync(currentPassword, user.password)
+            if (!validPassword) {
+                return res.status(400).json({message: 'Введен неправильный пароль'})
+            }
+            const hashedPassword = bcrypt.hashSync(newPassword, 7);
+            const updated = await User.findByIdAndUpdate(userId, {password: hashedPassword})
+            res.status(200).json(updated)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
+        }
+    }
+
+    async getInfoByUser (req, res) {
+        try {
+            const token = req.headers.authorization.split(' ')[1]
+            if (!token) {
+                return res.status(400).json({message: 'Не авторизован'})
+            }
+            const { id: userId } = jwt.verify(token, secret)
+            const user = await User.findById(userId)
+            res.status(200).json(user)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
+        }
+    }
+
+
 }
 
 module.exports = new UserController()

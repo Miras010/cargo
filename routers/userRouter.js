@@ -16,6 +16,9 @@ userRouter.post('/create', [
 ], roleMiddleware(['ADMIN']), UserController.create)
 userRouter.get('/getOne/:id', roleMiddleware(['ADMIN']), UserController.getOne)
 userRouter.put('/update', roleMiddleware(['ADMIN']), UserController.updateUser)
+userRouter.get('/getInfoByUser', roleMiddleware(['USER']), UserController.getInfoByUser)
+userRouter.put('/updateByUser', roleMiddleware(['USER']), UserController.updateByUser)
+userRouter.post('/changePasswordByUser', roleMiddleware(['USER']), UserController.changePasswordByUser)
 userRouter.post('/delete/:id', roleMiddleware(['ADMIN']), UserController.deleteUser)
 
 module.exports = userRouter
