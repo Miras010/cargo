@@ -8,7 +8,7 @@ const User = new Schema({
     mail: {type: String, required: true},
     password: {type: String, required: true},
     roles: [{type: String, ref: 'Role'}],
-    isActive: {type: Boolean, default: false}
+    isActive: {type: Boolean, default: true}
 })
 
 module.exports = model('User', User)
