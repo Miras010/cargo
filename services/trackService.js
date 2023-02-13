@@ -8,7 +8,6 @@ class TrackService {
 
     async upsertMany (data, id) {
         const promises = []
-        console.log('start')
         for (let item of data) {
             item.createdBy = id
             const asd = await Track.update(
@@ -17,8 +16,6 @@ class TrackService {
                 { upsert: true })
             promises.push(asd)
         }
-        console.log('end')
-
         return promises
     }
 

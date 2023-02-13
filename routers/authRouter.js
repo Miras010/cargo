@@ -14,6 +14,8 @@ authRouter.post('/registration', [
     check('password', 'Пароль должен быть больше 3 и меньше 20').isLength({min: 3, max: 20}),
 ], AuthController.registration)
 authRouter.get('/users', AuthController.getUsers)
+authRouter.post('/forgotPassword', AuthController.forgotPassword)
+authRouter.post('/resetPassword', AuthController.resetPassword)
 // authRouter.get('/users', roleMiddleware(['USER']), AuthController.getUsers)
 
 module.exports = authRouter
