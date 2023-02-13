@@ -15,8 +15,15 @@ class UserTrackController {
             const { trackNumber, description } = req.body
             const track = await Track.findOne({ trackNumber })
             if (!track) {
-                return res.status(400).json({message: 'Информации по данному треку не найдена!'})
+                const createdTrack = await Track.create({trackNumber, createdBy: id})
+                const temp = await UsersTrack.findOne({ownerId: id, track: createdTrack._id})
+                if (temp) {
+                    return res.status(400).json({message: 'Такой трек номер уже добавлен'})
+                }
+                const createdUsersTrack = await UsersTrack.create({ ownerId: id, track: createdTrack._id, description })
+                return res.status(200).json(createdUsersTrack)
             }
+
             const temp = await UsersTrack.findOne({ownerId: id, track: track._id})
             if (temp) {
                 return res.status(400).json({message: 'Такой трек номер уже добавлен'})
