@@ -4,7 +4,7 @@ const roleMiddleware = require('./../middleware/roleMiddleware')
 
 const receiptRouter = new Router()
 
-receiptRouter.get('/getAll', roleMiddleware(['ADMIN']), ReceiptController.getAll)
+receiptRouter.get('/getAll', roleMiddleware(['ADMIN', 'PARTNER']), ReceiptController.getAll)
 receiptRouter.post('/create', roleMiddleware(['ADMIN', 'PARTNER']), ReceiptController.create)
 receiptRouter.get('/getOne/:id', roleMiddleware(['ADMIN', 'PARTNER']), ReceiptController.getOne)
 receiptRouter.put('/update', roleMiddleware(['ADMIN', 'PARTNER']), ReceiptController.updateReceipt)

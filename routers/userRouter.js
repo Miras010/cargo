@@ -5,7 +5,7 @@ const {check} = require("express-validator");
 
 const userRouter = new Router()
 
-userRouter.get('/getAll', roleMiddleware(['ADMIN', 'USER']), UserController.getAll)
+userRouter.get('/getAll', roleMiddleware(['ADMIN']), UserController.getAll)
 userRouter.get('/loadUsers', roleMiddleware(['ADMIN', 'PARTNER']), UserController.loadUsers)
 userRouter.post('/create', [
     check('name', 'Имя не должен быть пустым').notEmpty(),

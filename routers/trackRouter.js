@@ -6,7 +6,7 @@ const roleMiddleware = require('./../middleware/roleMiddleware')
 
 const trackRouter = new Router()
 
-trackRouter.get('/getAll', roleMiddleware(['ADMIN']), TrackController.getAll)
+trackRouter.get('/getAll', roleMiddleware(['ADMIN', 'PARTNER']), TrackController.getAll)
 trackRouter.get('/partner/getAll', roleMiddleware(['ADMIN', 'PARTNER']), TrackController.getAllByPartner)
 trackRouter.post('/create', roleMiddleware(['ADMIN', 'PARTNER']), TrackController.create)
 trackRouter.post('/upsertMany', roleMiddleware(['ADMIN', 'PARTNER']), TrackController.upsertManyTracks)
