@@ -90,15 +90,15 @@ class AuthController {
             // const emailPassword = 'iwmWCEyv7pDvGgBJfdwk'
             // const url = 'zhan-cargo.kz'
 
-            const title = 'Ainar-cargo'
-            const email = 'ainar-cargo@mail.ru'
-            const emailPassword = 'cHfdsXpFwtSwtw4Vhvg2'
-            const url = 'ainar-cargo.kz'
+            // const title = 'Ainar-cargo'
+            // const email = 'ainar-cargo@mail.ru'
+            // const emailPassword = 'cHfdsXpFwtSwtw4Vhvg2'
+            // const url = 'ainar-cargo.kz'
 
-            // const title = 'Dar-cargo'
-            // const email = 'dar-cargo@mail.ru'
-            // const emailPassword = 'n216JS30fmSNgaPbT0zv'
-            // const url = 'dar-logistics.kz'
+            const title = 'Dar-cargo'
+            const email = 'dar-cargo@mail.ru'
+            const emailPassword = 'n216JS30fmSNgaPbT0zv'
+            const url = 'dar-logistics.kz'
 
             // const title = 'Ziya-cargo'
             // const email = 'ziya-cargo@mail.ru'
