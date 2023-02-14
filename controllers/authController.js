@@ -80,6 +80,31 @@ class AuthController {
 
     async forgotPassword (req, res) {
         try {
+            // const title = 'Elmira-cargo'
+            // const email = 'elmira-cargo@mail.ru'
+            // const emailPassword = 'XhyfPL6fbiP9LXmRYUEF'
+            // const url = 'elmira-cargo.kz'
+
+            // const title = 'Zhan-cargo'
+            // const email = 'zhan-cargo@mail.ru'
+            // const emailPassword = 'iwmWCEyv7pDvGgBJfdwk'
+            // const url = 'zhan-cargo.kz'
+
+            // const title = 'Ainar-cargo'
+            // const email = 'ainar-cargo@mail.ru'
+            // const emailPassword = 'cHfdsXpFwtSwtw4Vhvg2'
+            // const url = 'ainar-cargo.kz'
+
+            // const title = 'Dar-cargo'
+            // const email = 'dar-cargo@mail.ru'
+            // const emailPassword = 'n216JS30fmSNgaPbT0zv'
+            // const url = 'dar-logistics.kz'
+
+            // const title = 'Ziya-cargo'
+            // const email = 'ziya-cargo@mail.ru'
+            // const emailPassword = '9Ea36KCb0e6mhMqPrkDg'
+            // const url = 'ziya-cargo.kz'
+
             const {username} = req.body
             const user = await User.findOne({username})
             if (!user) {
@@ -91,19 +116,19 @@ class AuthController {
                 port: 465,
                 secure: true,
                 auth: {
-                    user: 'elmira-cargo@mail.ru',
-                    pass: 'XhyfPL6fbiP9LXmRYUEF',
+                    user: email,
+                    pass: emailPassword,
                 },
             })
             await transporter.sendMail({
-                from: '"Elmira-cargo" <elmira-cargo@mail.ru>',
+                from: `"${title}" <${email}>`,
                 to: user.mail,
                 subject: 'Attachments',
                 text: 'This message with attachments.',
                 html: `
                 <h1>Добрый день, ${user.name}!</h1>
                 <p>Для сброса пароля перейдите по следующей ссылке:</p>
-                <p>http://elmira-cargo.kz/reset/${resetToken}</p>
+                <p>http://${url}/reset/${resetToken}</p>
                 
                 <p>Если вы не хотите сбрасывать пароль, то проигнорируйте это сообщение!</p>
                 `
