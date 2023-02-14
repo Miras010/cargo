@@ -95,15 +95,15 @@ class AuthController {
             // const emailPassword = 'cHfdsXpFwtSwtw4Vhvg2'
             // const url = 'ainar-cargo.kz'
 
-            const title = 'Dar-cargo'
-            const email = 'dar-cargo@mail.ru'
-            const emailPassword = 'n216JS30fmSNgaPbT0zv'
-            const url = 'dar-logistics.kz'
+            // const title = 'Dar-cargo'
+            // const email = 'dar-cargo@mail.ru'
+            // const emailPassword = 'n216JS30fmSNgaPbT0zv'
+            // const url = 'dar-logistics.kz'
 
-            // const title = 'Ziya-cargo'
-            // const email = 'ziya-cargo@mail.ru'
-            // const emailPassword = '9Ea36KCb0e6mhMqPrkDg'
-            // const url = 'ziya-cargo.kz'
+            const title = 'Ziya-cargo'
+            const email = 'ziya-cargo@mail.ru'
+            const emailPassword = '9Ea36KCb0e6mhMqPrkDg'
+            const url = 'ziya-cargo.kz'
 
             const {username} = req.body
             const user = await User.findOne({username})
