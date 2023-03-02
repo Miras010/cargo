@@ -83,7 +83,7 @@ class AuthController {
             // const title = 'Elmira-cargo'
             // const email = 'elmira-cargo@mail.ru'
             // const emailPassword = 'XhyfPL6fbiP9LXmRYUEF'
-            // const url = 'elmira-cargo.kz'
+            // const url = 'elcargo.kz'
 
             // const title = 'Zhan-cargo'
             // const email = 'zhan-cargo@mail.ru'
