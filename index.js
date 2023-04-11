@@ -6,9 +6,22 @@ const trackRouter = require('./routers/trackRouter')
 const userRouter = require('./routers/userRouter')
 const receiptRouter = require('./routers/receiptRouter')
 const cors = require('cors');
+const https = require('https')
+const fs = require('fs')
 
 const app = express()
 app.use(express.json())
+
+// Certificate
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/aks-cargo.kz/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/aks-cargo.kz/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/aks-cargo.kz/chain.pem', 'utf8');
+
+const credentials = {
+    key: privateKey,
+    cert: certificate,
+    ca: ca
+};
 
 const corsOptions ={
     origin:'*',
@@ -22,9 +35,9 @@ app.use('/api/auth', authRouter)
 app.use('/api/track', trackRouter)
 app.use('/api/user', userRouter)
 app.use('/api/receipt', receiptRouter)
-// app.get('/', (req, res) => {
-//     res.end('Welcome to the logistic company!')
-// })
+app.get('/', (req, res) => {
+    res.end('Welcome!')
+})
 
 // app.use('/*', function (req, res) {
 //     res.sendFile(path.join(__dirname + '/frontend/index.html'))
@@ -36,19 +49,19 @@ moongose.set('strictQuery', true);
 
 const DB_URL = 'mongodb://127.0.0.1:27017/nodeproject'
 
-
 async function startApp() {
     try {
         await moongose.connect(DB_URL).then(() => {
             console.log('MongoDB is connected...')
         })
-        app.listen(PORT, () => {
-            console.log(`App started on port ${PORT}`)
-        })
+        https
+            .createServer(credentials, app)
+            .listen(PORT, ()=>{
+                console.log('server is runing at port 5000')
+            })
     } catch (e) {
         console.log(e)
     }
 }
 
 startApp()
-
