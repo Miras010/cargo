@@ -26,6 +26,10 @@ class AuthController {
             if (candidate) {
                 return res.status(400).json({message: 'Пользователь с таким именем уже существует'})
             }
+            const candidate2 = await User.findOne({phoneNumber})
+            if (candidate2) {
+                return res.status(400).json({message: 'Пользователь с таким номером уже существует'})
+            }
             const hashedPassword = bcrypt.hashSync(password, 7);
             const userRole = await Role.findOne({value: 'USER'})
             const user = new User({username, name, surname, mail, phoneNumber, password: hashedPassword, roles: [userRole.value]})
@@ -54,6 +58,37 @@ class AuthController {
                 })
                 if (!isAdmin) {
                     return res.status(400).json({message: `Пользователь ${username} не активирован`})
+                }
+            }
+            const validPassword = bcrypt.compareSync(password, user.password)
+            if (!validPassword) {
+                return res.status(400).json({message: 'Введен неправильный пароль'})
+            }
+            const token = generateAccessToken(user._id, user.roles)
+            return res.status(200).json({token, roles: user.roles, userInfo: user})
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
+        }
+    }
+
+    async loginByPhoneNumber (req, res) {
+        try {
+            const {phoneNumber, password} = req.body
+            const user = await User.findOne({phoneNumber})
+            if (!user) {
+                return res.status(400).json({message: `Пользователь с номером ${phoneNumber} не найден`})
+            }
+            if (!user.isActive) {
+                const roles = user.roles
+                let isAdmin = false
+                roles.forEach(role => {
+                    if(role === 'ADMIN') {
+                        isAdmin = true
+                    }
+                })
+                if (!isAdmin) {
+                    return res.status(400).json({message: `Пользователь ${phoneNumber} не активирован`})
                 }
             }
             const validPassword = bcrypt.compareSync(password, user.password)

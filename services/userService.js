@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Track = require("../models/Track");
+const bcrypt = require("bcryptjs");
 
 class UserService {
     async create (data) {
@@ -46,6 +47,15 @@ class UserService {
             throw new Error('Enter the id')
         }
         const updatedUser = await User.findByIdAndUpdate(user._id, user, {new: true})
+        return updatedUser
+    }
+
+    async changePassword({_id, password}) {
+        if (!_id) {
+            throw new Error('Enter the id')
+        }
+        const hashedPassword = bcrypt.hashSync(password, 7);
+        const updatedUser = await User.findByIdAndUpdate(_id, { password: hashedPassword }, {new: true})
         return updatedUser
     }
 }

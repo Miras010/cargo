@@ -6,6 +6,7 @@ const authMiddleware = require('./../middleware/authMiddleware')
 const roleMiddleware = require('./../middleware/roleMiddleware')
 
 authRouter.post('/login', AuthController.login)
+authRouter.post('/loginByPhone', AuthController.loginByPhoneNumber)
 authRouter.post('/registration', [
     check('name', 'Имя не должен быть пустым').notEmpty(),
     check('surname', 'Фамилия не должен быть пустым').notEmpty(),

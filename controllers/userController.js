@@ -44,7 +44,7 @@ class UserController {
     async getAll (req, res) {
         try {
             const { page = 1, limit = 10, globalFilter = '' } = req.query
-            const response = await UserService.getAll({ page, limit, globalFilter})
+            const response = await UserService.getAll({ page, limit, globalFilter })
             res.status(200).json(response)
         } catch (e) {
             res.status(500).json(e)
@@ -82,6 +82,16 @@ class UserController {
     async updateUser (req, res) {
         try {
             const updated = await UserService.update(req.body)
+            res.status(200).json(updated)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
+        }
+    }
+
+    async changePassword (req, res) {
+        try {
+            const updated = await UserService.changePassword(req.body)
             res.status(200).json(updated)
         } catch (e) {
             console.log(e)
