@@ -185,6 +185,56 @@ class AuthController {
         }
     }
 
+    async forgotPasswordByPhone (req, res) {
+        try {
+            const title = 'Cargo'
+            const email = 'cargo01kz@mail.ru'
+            const emailPassword = 'weeJzWTUNf0xMdJ3pyUA'
+
+            const url = 'https://aspan-cargo.kz'
+            // const url = 'http://marry-cargo.kz'
+            // const url = 'https://aks-cargo.kz'
+            // const url = 'http://g-cargo.kz'
+            // const url = 'http://ziya-cargo.kz'
+            // const url = 'http://dar-logistics.kz'
+            // const url = 'http://ainar-cargo.kz'
+            // const url = 'http://zhan-cargo.kz'
+
+            const { phoneNumber } = req.body
+            const user = await User.findOne({phoneNumber})
+            if (!user) {
+                return res.status(400).json({message: `Пользователь не найден`})
+            }
+            const resetToken = generateAccessToken(user._id, user.roles)
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.mail.ru',
+                port: 465,
+                secure: true,
+                auth: {
+                    user: email,
+                    pass: emailPassword,
+                },
+            })
+            await transporter.sendMail({
+                from: `"${title}" <${email}>`,
+                to: user.mail,
+                subject: 'Attachments',
+                text: 'This message with attachments.',
+                html: `
+                <h1>Добрый день, ${user.name}!</h1>
+                <p>Для сброса пароля перейдите по следующей ссылке:</p>
+                <p>${url}/reset/${resetToken}</p>
+                
+                <p>Если вы не хотите сбрасывать пароль, то проигнорируйте это сообщение!</p>
+                `
+            })
+            return res.status(200).json()
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
+        }
+    }
+
     async resetPassword (req, res) {
         try {
             const {token, password} = req.body

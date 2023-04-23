@@ -16,6 +16,7 @@ authRouter.post('/registration', [
 ], AuthController.registration)
 authRouter.get('/users', AuthController.getUsers)
 authRouter.post('/forgotPassword', AuthController.forgotPassword)
+authRouter.post('/forgotPasswordByPhone', AuthController.forgotPasswordByPhone)
 authRouter.post('/resetPassword', AuthController.resetPassword)
 // authRouter.get('/users', roleMiddleware(['USER']), AuthController.getUsers)
 
