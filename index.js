@@ -13,15 +13,15 @@ const app = express()
 app.use(express.json())
 
 // Certificate
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/aks-cargo.kz/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/aks-cargo.kz/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/aks-cargo.kz/chain.pem', 'utf8');
-
-const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: ca
-};
+// const privateKey = fs.readFileSync('/etc/letsencrypt/live/ainar-cargo.kz/privkey.pem', 'utf8');
+// const certificate = fs.readFileSync('/etc/letsencrypt/live/ainar-cargo.kz/cert.pem', 'utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/ainar-cargo.kz/chain.pem', 'utf8');
+//
+// const credentials = {
+//     key: privateKey,
+//     cert: certificate,
+//     ca: ca
+// };
 
 const corsOptions ={
     origin:'*',
@@ -54,11 +54,14 @@ async function startApp() {
         await moongose.connect(DB_URL).then(() => {
             console.log('MongoDB is connected...')
         })
-        https
-            .createServer(credentials, app)
-            .listen(PORT, ()=>{
-                console.log('server is runing at port 5000')
-            })
+        app.listen(PORT, () => {
+            console.log(`App started on port ${PORT} http`)
+        })
+        // https
+        //     .createServer(credentials, app)
+        //     .listen(PORT, ()=>{
+        //         console.log('server is runing at port 5000 https')
+        //     })
     } catch (e) {
         console.log(e)
     }

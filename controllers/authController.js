@@ -191,13 +191,13 @@ class AuthController {
             const email = 'cargo01kz@mail.ru'
             const emailPassword = 'weeJzWTUNf0xMdJ3pyUA'
 
-            const url = 'https://aspan-cargo.kz'
+            // const url = 'https://aspan-cargo.kz'
             // const url = 'http://marry-cargo.kz'
             // const url = 'https://aks-cargo.kz'
             // const url = 'http://g-cargo.kz'
             // const url = 'http://ziya-cargo.kz'
             // const url = 'http://dar-logistics.kz'
-            // const url = 'http://ainar-cargo.kz'
+            const url = 'http://ainar-cargo.kz'
             // const url = 'http://zhan-cargo.kz'
 
             const { phoneNumber } = req.body
