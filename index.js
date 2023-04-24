@@ -13,9 +13,9 @@ const app = express()
 app.use(express.json())
 
 // Certificate
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/g-cargo.kz/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/g-cargo.kz/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/g-cargo.kz/chain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/dar-logistics.kz/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/dar-logistics.kz/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/dar-logistics.kz/chain.pem', 'utf8');
 
 const credentials = {
     key: privateKey,
