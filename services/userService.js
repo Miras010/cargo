@@ -15,7 +15,7 @@ class UserService {
             regex = new RegExp(globalFilter, 'i')
         }
         const users = await User.find({
-            username: {$regex: regex},
+            phoneNumber: {$regex: regex},
         })
             .limit(limit * 1)
             .skip((page - 1) * limit)
