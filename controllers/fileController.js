@@ -5,9 +5,9 @@ class FileController {
     async uploadFile (req, res) {
         try {
             const file = req.files.file
-            let path = `newFiles\\${file.name}`
+            let path = `newFiles/${file.name}`
             console.log('name', file.name)
-            file.mv(path)
+            await file.mv(path)
             const type = file.name.split('.').pop()
             const created = await File.create({
                 name: file.name,
