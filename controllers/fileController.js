@@ -1,10 +1,5 @@
-const fs = require('fs')
-const File = require('../models/File')
-const jwt = require("jsonwebtoken");
-const {secret} = require("../config");
-const UsersTrack = require("../models/UsersTrack");
-const FileService = require("../services/FileService");
-const TrackService = require("../services/trackService");
+const File = require('./../models/File')
+const FileService = require('./../services/FileService');
 
 class FileController {
 
