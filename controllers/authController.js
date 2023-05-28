@@ -197,7 +197,8 @@ class AuthController {
             // const url = 'https://g-cargo.kz'
             // const url = 'http://ziya-cargo.kz'
             // const url = 'https://dar-logistics.kz'
-            const url = 'https://alan-cargo.kz'
+            // const url = 'https://alan-cargo.kz'
+            const url = 'https://dilya-cargo.kz'
             // const url = 'http://ainar-cargo.kz'
             // const url = 'http://zhan-cargo.kz'
 
