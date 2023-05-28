@@ -1,5 +1,5 @@
-const File = require('./../models/File')
-const FileService = require('./../services/FileService');
+const File = require('../models/File')
+const FileService = require("../services/fileService");
 
 class FileController {
 
