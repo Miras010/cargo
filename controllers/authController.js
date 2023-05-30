@@ -200,7 +200,8 @@ class AuthController {
             // const url = 'https://alan-cargo.kz'
             // const url = 'https://dilya-cargo.kz'
             // const url = 'https://ainar-cargo.kz'
-            const url = 'https://zhan-cargo.kz'
+            // const url = 'https://zhan-cargo.kz'
+            const url = 'https://zhappar-cargo.kz'
 
             const { phoneNumber } = req.body
             const user = await User.findOne({phoneNumber})
