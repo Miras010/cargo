@@ -16,9 +16,9 @@ app.use(express.json())
 app.use(fileUpload({}))
 
 // Certificate
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/tau-cargo.kz/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/tau-cargo.kz/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/tau-cargo.kz/chain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/aru-cargo.kz/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/aru-cargo.kz/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/aru-cargo.kz/chain.pem', 'utf8');
 
 const credentials = {
     key: privateKey,
