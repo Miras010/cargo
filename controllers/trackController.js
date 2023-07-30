@@ -1,4 +1,5 @@
 const Track = require('../models/Track')
+const UsersTrack = require('../models/UsersTrack')
 const TrackService = require('./../services/trackService')
 const jwt = require("jsonwebtoken");
 const {secret} = require("../config");
@@ -55,6 +56,20 @@ class TrackController {
             const { page = 1, limit = 10, globalFilter = '', filterBy, from, to} = req.query
             const posts = await TrackService.getAllByPartner({page, limit, globalFilter, filterBy, from, to, createdBy: id})
             res.status(200).json(posts)
+        } catch (e) {
+            res.status(500).json(e)
+        }
+    }
+
+    async getTrackOwner (req, res) {
+        try {
+            const trackNumber = req.params.trackNumber
+            const track = await Track.findOne({trackNumber})
+            if (!track) {
+                res.status(500).json('Трек код не найден')
+            }
+            const result = await UsersTrack.find({track: track._id}).populate('ownerId')
+            res.status(200).json(result)
         } catch (e) {
             res.status(500).json(e)
         }

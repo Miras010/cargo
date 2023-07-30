@@ -13,6 +13,7 @@ trackRouter.post('/upsertMany', roleMiddleware(['ADMIN', 'PARTNER']), TrackContr
 trackRouter.get('/getOne/:id', roleMiddleware(['ADMIN', 'PARTNER']), TrackController.getOne)
 trackRouter.put('/update', roleMiddleware(['ADMIN', 'PARTNER']), TrackController.updateTrack)
 trackRouter.post('/delete/:id', roleMiddleware(['ADMIN', 'PARTNER']), TrackController.deleteTrack)
+trackRouter.get('/getOwner/:trackNumber', TrackController.getTrackOwner)
 
 trackRouter.post('/user/follow', roleMiddleware(['ADMIN', 'USER']), UserTrackController.followTrackByUser)
 trackRouter.get('/user/getAll', roleMiddleware(['ADMIN', 'USER']), UserTrackController.getAllUserTracks)
