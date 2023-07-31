@@ -15,10 +15,24 @@ const app = express()
 app.use(express.json())
 app.use(fileUpload({}))
 
+// const url = 'aspan-cargo.kz'
+// const url = 'marry-cargo.kz'
+// const url = 'aks-cargo.kz'
+// const url = 'g-cargo.kz'
+// const url = 'ziya-cargo.kz'
+const url = 'dar-logistics.kz'
+// const url = 'alan-cargo.kz'
+// const url = 'dilya-cargo.kz'
+// const url = 'ainar-cargo.kz'
+// const url = 'zhan-cargo.kz'
+// const url = 'zhappar-cargo.kz'
+// const url = 'akty-cargo.kz'
+// const url = 'tau-cargo.kz'
+
 // Certificate
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/ainar-cargo.kz/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/ainar-cargo.kz/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/ainar-cargo.kz/chain.pem', 'utf8');
+const privateKey = fs.readFileSync(`/etc/letsencrypt/live/${url}/privkey.pem`, 'utf8');
+const certificate = fs.readFileSync(`/etc/letsencrypt/live/${url}/cert.pem`, 'utf8');
+const ca = fs.readFileSync(`/etc/letsencrypt/live/${url}/chain.pem`, 'utf8');
 
 const credentials = {
     key: privateKey,
