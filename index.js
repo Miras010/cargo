@@ -15,12 +15,12 @@ const app = express()
 app.use(express.json())
 app.use(fileUpload({}))
 
-// const url = 'aspan-cargo.kz'
+const url = 'aspan-cargo.kz'
 // const url = 'marry-cargo.kz'
 // const url = 'aks-cargo.kz'
 // const url = 'g-cargo.kz'
 // const url = 'ziya-cargo.kz'
-const url = 'dar-logistics.kz'
+// const url = 'dar-logistics.kz'
 // const url = 'alan-cargo.kz'
 // const url = 'dilya-cargo.kz'
 // const url = 'ainar-cargo.kz'
