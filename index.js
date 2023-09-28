@@ -15,7 +15,7 @@ const app = express()
 app.use(express.json())
 app.use(fileUpload({}))
 
-const url = 'aspan-cargo.kz'
+// const url = 'aspan-cargo.kz'
 // const url = 'marry-cargo.kz'
 // const url = 'aks-cargo.kz'
 // const url = 'g-cargo.kz'
@@ -28,6 +28,7 @@ const url = 'aspan-cargo.kz'
 // const url = 'zhappar-cargo.kz'
 // const url = 'akty-cargo.kz'
 // const url = 'tau-cargo.kz'
+const url = 'aru-cargo.kz'
 
 // Certificate
 const privateKey = fs.readFileSync(`/etc/letsencrypt/live/${url}/privkey.pem`, 'utf8');
@@ -61,7 +62,7 @@ app.get('/', (req, res) => {
 //     res.sendFile(path.join(__dirname + '/frontend/index.html'))
 // })
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 moongose.set('strictQuery', true);
 

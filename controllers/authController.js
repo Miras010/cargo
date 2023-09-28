@@ -191,7 +191,8 @@ class AuthController {
             const email = 'cargo01kz@mail.ru'
             const emailPassword = 'weeJzWTUNf0xMdJ3pyUA'
 
-            const url = 'https://aspan-cargo.kz'
+            // const url = 'https://aspan-cargo.kz'
+            const url = 'https://aru-cargo.kz'
             // const url = 'https://marry-cargo.kz'
             // const url = 'https://aks-cargo.kz'
             // const url = 'https://g-cargo.kz'
