@@ -21,7 +21,7 @@ app.use(fileUpload({}))
 // const url = 'g-cargo.kz'
 // const url = 'ziya-cargo.kz'
 // const url = 'dar-logistics.kz'
-const url = 'alan-cargo.kz'
+// const url = 'alan-cargo.kz'
 // const url = 'dilya-cargo.kz'
 // const url = 'ainar-cargo.kz'
 // const url = 'zhan-cargo.kz'
