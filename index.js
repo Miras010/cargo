@@ -26,9 +26,10 @@ app.use(fileUpload({}))
 // const url = 'ainar-cargo.kz'
 // const url = 'zhan-cargo.kz'
 // const url = 'zhappar-cargo.kz'
-// const url = 'akty-cargo.kz'
+const url = 'akty-cargo.kz'
 // const url = 'tau-cargo.kz'
-const url = 'aru-cargo.kz'
+// const url = 'aru-cargo.kz'
+// const url = 'logo-cargo.kz'
 
 // Certificate
 const privateKey = fs.readFileSync(`/etc/letsencrypt/live/${url}/privkey.pem`, 'utf8');
