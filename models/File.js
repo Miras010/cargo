@@ -5,6 +5,7 @@ const File = new Schema({
     date: {type: Date},
     statusKey: {type: String},
     statusValue: {type: String},
+    shippedCity: {type: String},
     type: {type: String, required: true},
     size: {type: String},
     createdDate: {type: Date, default: Date.now, required: true},

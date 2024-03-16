@@ -32,15 +32,15 @@ const url = 'akty-cargo.kz'
 // const url = 'logo-cargo.kz'
 
 // Certificate
-const privateKey = fs.readFileSync(`/etc/letsencrypt/live/${url}/privkey.pem`, 'utf8');
-const certificate = fs.readFileSync(`/etc/letsencrypt/live/${url}/cert.pem`, 'utf8');
-const ca = fs.readFileSync(`/etc/letsencrypt/live/${url}/chain.pem`, 'utf8');
-
-const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: ca
-};
+// const privateKey = fs.readFileSync(`/etc/letsencrypt/live/${url}/privkey.pem`, 'utf8');
+// const certificate = fs.readFileSync(`/etc/letsencrypt/live/${url}/cert.pem`, 'utf8');
+// const ca = fs.readFileSync(`/etc/letsencrypt/live/${url}/chain.pem`, 'utf8');
+//
+// const credentials = {
+//     key: privateKey,
+//     cert: certificate,
+//     ca: ca
+// };
 
 const corsOptions ={
     origin:'*',
@@ -63,7 +63,7 @@ app.get('/', (req, res) => {
 //     res.sendFile(path.join(__dirname + '/frontend/index.html'))
 // })
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 moongose.set('strictQuery', true);
 
@@ -74,14 +74,14 @@ async function startApp() {
         await moongose.connect(DB_URL).then(() => {
             console.log('MongoDB is connected...')
         })
-        // app.listen(PORT, () => {
-        //     console.log(`App started on port ${PORT} http`)
-        // })
-        https
-            .createServer(credentials, app)
-            .listen(PORT, ()=>{
-                console.log('server is runing at port 5000 https')
-            })
+        app.listen(PORT, () => {
+            console.log(`App started on port ${PORT} http`)
+        })
+        // https
+        //     .createServer(credentials, app)
+        //     .listen(PORT, ()=>{
+        //         console.log('server is runing at port 5000 https')
+        //     })
     } catch (e) {
         console.log(e)
     }

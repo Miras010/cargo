@@ -8,6 +8,7 @@ const Track = new Schema({
     fromChinaToAlmaty: Date,
     receivedByClient: Date,
     shippedFromAlmatyDate: Date,
+    shippedCity: String,
     createdDate: {type: Date, default: Date.now, required: true},
     createdBy: {type: ObjectId, required: true, ref: 'User'},
 })
