@@ -18,7 +18,7 @@ app.use(fileUpload({}))
 // const url = 'aspan-cargo.kz'
 // const url = 'marry-cargo.kz'
 // const url = 'aks-cargo.kz'
-// const url = 'g-cargo.kz'
+const url = 'g-cargo.kz'
 // const url = 'ziya-cargo.kz'
 // const url = 'dar-logistics.kz'
 // const url = 'alan-cargo.kz'
@@ -26,21 +26,21 @@ app.use(fileUpload({}))
 // const url = 'ainar-cargo.kz'
 // const url = 'zhan-cargo.kz'
 // const url = 'zhappar-cargo.kz'
-const url = 'akty-cargo.kz'
+// const url = 'akty-cargo.kz'
 // const url = 'tau-cargo.kz'
 // const url = 'aru-cargo.kz'
 // const url = 'logo-cargo.kz'
 
 // Certificate
-// const privateKey = fs.readFileSync(`/etc/letsencrypt/live/${url}/privkey.pem`, 'utf8');
-// const certificate = fs.readFileSync(`/etc/letsencrypt/live/${url}/cert.pem`, 'utf8');
-// const ca = fs.readFileSync(`/etc/letsencrypt/live/${url}/chain.pem`, 'utf8');
-//
-// const credentials = {
-//     key: privateKey,
-//     cert: certificate,
-//     ca: ca
-// };
+const privateKey = fs.readFileSync(`/etc/letsencrypt/live/${url}/privkey.pem`, 'utf8');
+const certificate = fs.readFileSync(`/etc/letsencrypt/live/${url}/cert.pem`, 'utf8');
+const ca = fs.readFileSync(`/etc/letsencrypt/live/${url}/chain.pem`, 'utf8');
+
+const credentials = {
+    key: privateKey,
+    cert: certificate,
+    ca: ca
+};
 
 const corsOptions ={
     origin:'*',
@@ -74,14 +74,14 @@ async function startApp() {
         await moongose.connect(DB_URL).then(() => {
             console.log('MongoDB is connected...')
         })
-        app.listen(PORT, () => {
-            console.log(`App started on port ${PORT} http`)
-        })
-        // https
-        //     .createServer(credentials, app)
-        //     .listen(PORT, ()=>{
-        //         console.log('server is runing at port 5000 https')
-        //     })
+        // app.listen(PORT, () => {
+        //     console.log(`App started on port ${PORT} http`)
+        // })
+        https
+            .createServer(credentials, app)
+            .listen(PORT, ()=>{
+                console.log('server is runing at port 5000 https')
+            })
     } catch (e) {
         console.log(e)
     }
